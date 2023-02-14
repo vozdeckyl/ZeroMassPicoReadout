@@ -15,11 +15,11 @@ add_executable(singleChannel
 )
 
 # Add pico_stdlib library which aggregates commonly used features
-target_link_libraries(uart pico_stdlib pico_multicore hardware_adc)
+target_link_libraries(singleChannel pico_stdlib pico_multicore hardware_adc)
 
-# enable usb output, disable uart output
-#pico_enable_stdio_uart(uart 1)
-pico_enable_stdio_usb(uart 1)
+# enable/disable usb/uart I/O
+pico_enable_stdio_uart(singleChannel 1)
+#pico_enable_stdio_usb(singleChannel 1)
 
 # create map/bin/hex/uf2 file in addition to ELF.
-pico_add_extra_outputs(uart)
+pico_add_extra_outputs(singleChannel)
