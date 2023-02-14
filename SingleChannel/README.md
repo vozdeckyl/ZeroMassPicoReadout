@@ -12,3 +12,6 @@ make -j10
 
 ## Connecting the board
 The pre-amplifier output has to be connected to the ADC0 channel (pin 31) and the ground has to be connected to GND (pin 28).
+
+## Using USB or UART
+In the cmake file (`CMakeLists.txt`) the standard output (used by the printf functions) can be either set to USB or UART by (un)commenting the relevant lines. When using UART, the UART0 pins (pins 1 and 2) are used.
