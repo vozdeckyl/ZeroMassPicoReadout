@@ -5,6 +5,11 @@
 #include "hardware/gpio.h"
 #include "hardware/adc.h"
 
+
+int upThreshold = 500;
+int downThreshold = 450;
+
+
 int counter = 0;
 int counter2 = 0;
 static mutex_t mutex;
@@ -50,13 +55,13 @@ int main() {
 
         signal = adc_read();
 
-	if (signal>100) {
+	if (signal>upThreshold) {
 
 	    mutex_enter_blocking(&mutex);
 	    counter++;
 	    mutex_exit(&mutex);
 	    
-	    while (signal>50) {
+	    while (signal>downThreshold) {
 		// wait for the signal to come down
 		signal = adc_read();
 	    }
