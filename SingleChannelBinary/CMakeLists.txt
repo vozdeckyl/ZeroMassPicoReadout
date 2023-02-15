@@ -10,16 +10,16 @@ project(ZeroMassPicoSingleChannelBinary)
 pico_sdk_init()
 
 
-add_executable(singleChannel
+add_executable(singleChannelBinary
     singleChannelBinary.c
 )
 
 # Add pico_stdlib library which aggregates commonly used features
-target_link_libraries(singleChannel pico_stdlib pico_multicore hardware_adc)
+target_link_libraries(singleChannelBinary pico_stdlib pico_multicore hardware_adc)
 
 # enable/disable usb/uart I/O
-pico_enable_stdio_uart(singleChannel 1)
-#pico_enable_stdio_usb(singleChannel 1)
+pico_enable_stdio_uart(singleChannelBinary 1)
+#pico_enable_stdio_usb(singleChannelBinary 1)
 
 # create map/bin/hex/uf2 file in addition to ELF.
-pico_add_extra_outputs(singleChannel)
+pico_add_extra_outputs(singleChannelBinary)
