@@ -34,16 +34,11 @@ void send_data()
 	mutex_exit(&mutex);
 	int measurementDuration_us = to_us_since_boot(get_absolute_time()) - timeOfLastReading;
 	timeOfLastReading = to_us_since_boot(get_absolute_time());
-	printf("%d ", measurementDuration_us);
+	
 	for (int n = 0; n<32; n++) {
-	    //printf("%d ", data[n]);
-            // this line is for debugging only, comment it out:
-	    if(n%8==0) {
-		printf("\n");
-	    }
 	    printf("%f ", 1e6*((float) data[n])/((float) measurementDuration_us));
 	}
-	printf("\n - - - - - - - - - - - \n");
+	printf("\n");
     }
 }
 
