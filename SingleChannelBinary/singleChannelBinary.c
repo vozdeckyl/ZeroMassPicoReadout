@@ -7,6 +7,7 @@
 
 int counter = 0;
 static mutex_t mutex;
+uint inputPin = 16;
 
 void send_data()
 {
@@ -32,30 +33,54 @@ void send_data()
     }
 }
 
+void capture()
+{
+	while (true) {
+	
+		if(gpio_get(inputPin)) {
+			
+			mutex_enter_blocking(&mutex);
+			counter++;
+			mutex_exit(&mutex);
+			
+			/*
+			int leaveCounter;
+			while(true) {
+				
+				// wait until the signal comes back down
+				// three readings low cout as signal being back down
+				
+				if(gpio_get(inputPin))
+				{
+					leaveCounter=0;
+				}
+				else
+				{
+					leaveCounter++;
+				}
+				
+				if(leaveCounter>3)
+				{
+					break;
+				}
+			}
+			*/
+			
+			while(gpio_get(inputPin)){}
+		}
+    }
+}
+
 int main() {
     stdio_init_all();
     
-    uint inputPin = 16;
     gpio_init(inputPin);
     gpio_set_input_enabled(inputPin, true);
     
     mutex_init(&mutex);
-    multicore_launch_core1(send_data);
-    
-    uint16_t signal;
-    
-    
-    while (true) {
+    multicore_launch_core1(capture);
+
+	send_data();
 	
-	if(gpio_get(inputPin)) {
-	    mutex_enter_blocking(&mutex);
-	    counter++;
-	    mutex_exit(&mutex);
-	    
-	    while(gpio_get(inputPin)) {
-		// wait until the signal comes back down
-	    }
-	}
-    }
     return 0;
 }
