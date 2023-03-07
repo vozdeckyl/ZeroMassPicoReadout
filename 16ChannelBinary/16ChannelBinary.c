@@ -6,8 +6,6 @@
 #include "hardware/adc.h"
 
 int counter[16] = {0};
-bool alreadyUp[16] = {0};
-int noChannelsUp = 0;
 static mutex_t mutex;
 
 void send_data()
@@ -23,7 +21,8 @@ void send_data()
 		{
 			sleep_ms(1);
 		}
-		
+
+		int measurementDuration_us = to_us_since_boot(get_absolute_time()) - timeOfLastReading;
 		mutex_enter_blocking(&mutex);
 		for(int i=0; i<16; i++)
 		{
@@ -31,7 +30,7 @@ void send_data()
 			counter[i] = 0;
 		}
 		mutex_exit(&mutex);
-		int measurementDuration_us = to_us_since_boot(get_absolute_time()) - timeOfLastReading;
+		timeOfLastReading = to_us_since_boot(get_absolute_time());
 		
 		for(int i=0;i<16;i++)
 		{
@@ -39,7 +38,6 @@ void send_data()
 			printf("%f ", 1e6*((float) data[i])/((float) measurementDuration_us));
 		}
 		printf("\n - - - - - - - - - - - - \n");
-		timeOfLastReading = to_us_since_boot(get_absolute_time());
     }
 }
 
@@ -60,15 +58,15 @@ void capture()
 		
 		if(risingEdges != 0)
 		{
+			mutex_enter_blocking(&mutex);
 			for(int i=0; i<16; i++)
 			{
 				if(((risingEdges>>i) & 0b1) == 1)
 				{
-					mutex_enter_blocking(&mutex);
 					counter[i]++;
-					mutex_exit(&mutex);
 				}
 			}
+			mutex_exit(&mutex);
 		}
     }
 }
