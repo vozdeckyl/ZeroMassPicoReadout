@@ -34,10 +34,9 @@ void send_data()
 		
 		for(int i=0;i<16;i++)
 		{
-			if(i % 8 == 0) printf("\n");
 			printf("%f ", 1e6*((float) data[i])/((float) measurementDuration_us));
 		}
-		printf("\n - - - - - - - - - - - - \n");
+		printf("\n");
     }
 }
 
