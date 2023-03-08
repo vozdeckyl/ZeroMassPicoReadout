@@ -18,8 +18,8 @@ add_executable(16ChannelBinary
 target_link_libraries(16ChannelBinary pico_stdlib pico_multicore hardware_adc)
 
 # enable/disable usb/uart I/O
-#pico_enable_stdio_uart(16ChannelBinary 1)
-pico_enable_stdio_usb(16ChannelBinary 1)
+pico_enable_stdio_uart(16ChannelBinary 1)
+#pico_enable_stdio_usb(16ChannelBinary 1)
 
 # create map/bin/hex/uf2 file in addition to ELF.
 pico_add_extra_outputs(16ChannelBinary)
