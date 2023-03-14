@@ -28,7 +28,7 @@ void send_data()
 	counter = 0;
 	mutex_exit(&mutex);
 	int measurementDuration_us = to_us_since_boot(get_absolute_time()) - timeOfLastReading; 
-	printf("%d %d %f \n", data, measurementDuration_us, 1e6*((float) data)/((float) measurementDuration_us));
+	printf("%f \n",1e6*((float) data)/((float) measurementDuration_us));
 	timeOfLastReading = to_us_since_boot(get_absolute_time());
     }
 }
