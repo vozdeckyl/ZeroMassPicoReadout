@@ -1,5 +1,5 @@
 # Pico Software for ZMD DAQ
-Code base for the Raspberry Pi Pico used in the ZMD readout.
+Code base for the Raspberry Pi Pico used in the Zero Mass Detector DAQ.
 
 Each folder corresponds to a single program. The two most important programs, which correspond to the final two designs, are saved in the following folders:
 - [16ChannelBinary](16ChannelBinary)
