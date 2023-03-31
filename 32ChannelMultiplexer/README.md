@@ -11,7 +11,7 @@ make -j10
 ```
 
 ## Connecting the board
-TODO: include a photo
+<img src="circuitPhoto.png" alt="drawing" width="800"/>
 
 ## Using USB or UART
 In the cmake file (`CMakeLists.txt`) the standard output (used by the printf functions) can be either set to USB or UART by (un)commenting the relevant lines. When using UART, the UART0 pins (pins 1 and 2) are used.
