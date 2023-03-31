@@ -1,4 +1,4 @@
-# Single Channel
+# 32 Channel Design with Multiplexers
 Detects pulses on 32 channels using analog multiplexers.
 
 ## Compiling Code
