@@ -1,5 +1,5 @@
-# 32 Channel Design with Multiplexers
-Detects pulses on 32 channels using analog multiplexers.
+# 16 Channel Design with Comparators
+Detects pulses on 16 channels using comparators and the Pico's digital input.
 
 ## Compiling Code
 Compile the code into a `build/` directory using cmake:
